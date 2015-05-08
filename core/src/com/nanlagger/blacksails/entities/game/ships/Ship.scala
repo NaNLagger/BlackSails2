@@ -1,10 +1,10 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game.ships
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Timer
 import com.badlogic.gdx.utils.Timer.Task
+import com.nanlagger.blacksails.entities.game.GameUnit
+import com.nanlagger.blacksails.entities.{Graph, UnitEntities}
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.actors.WayActor

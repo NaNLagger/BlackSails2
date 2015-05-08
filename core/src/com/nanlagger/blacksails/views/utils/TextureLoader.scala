@@ -23,6 +23,8 @@ object TextureLoader {
   //listTexture += ("field" -> new TextureRegion(new Texture("data/atlas_2.png"), 513, 0, 256, 222))
   listTexture += ("field" -> new TextureRegion(new Texture("data/fielda.png")))
   listTexture += ("ocean" -> new TextureRegion(new Texture("data/ocean-3.png")))
+  listTexture += ("town" -> new TextureRegion(new Texture("data/town.png")))
+  listTexture += ("port" -> new TextureRegion(new Texture("data/port.png")))
   listTexture += ("not_vision" -> new TextureRegion(new Texture("data/not_vision.png")))
   listTexture += ("start2" -> new TextureRegion(new Texture("data/atlas_2.png"), 366, 513, 400, 128))
 

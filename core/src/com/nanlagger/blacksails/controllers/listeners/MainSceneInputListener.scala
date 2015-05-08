@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.{InputCommand, GameController}
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
-import com.nanlagger.blacksails.entities.Ship
+import com.nanlagger.blacksails.entities.game.ships.Ship
 import com.nanlagger.blacksails.views.actors.GameActor
 
 /**

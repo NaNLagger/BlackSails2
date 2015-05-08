@@ -1,7 +1,9 @@
 package com.nanlagger.blacksails.controllers.ai
 
 import com.badlogic.gdx.Gdx
-import com.nanlagger.blacksails.entities.{Ship, UnitEntities, Player}
+import com.nanlagger.blacksails.entities.game.Player
+import com.nanlagger.blacksails.entities.UnitEntities
+import com.nanlagger.blacksails.entities.game.ships.Ship
 
 import scala.util.Random
 

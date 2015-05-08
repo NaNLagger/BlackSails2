@@ -1,6 +1,6 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game
 
-import com.badlogic.gdx.Gdx
+import com.nanlagger.blacksails.entities.{Graph, UnitEntities}
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.actors.Drawable
 

@@ -1,9 +1,10 @@
 package com.nanlagger.blacksails.views.actors
 
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.nanlagger.blacksails.entities.Field.TypeField
+import com.nanlagger.blacksails.entities.game.Field
+import Field.TypeField
+import com.nanlagger.blacksails.entities.game.Field
 import com.nanlagger.blacksails.views.utils.TextureLoader
-import com.nanlagger.blacksails.entities.Field
 
 /**
  * Created by NaNLagger on 06.04.15.

@@ -1,6 +1,7 @@
 package com.nanlagger.blacksails.entities
 
-import com.nanlagger.blacksails.entities.Field.TypeField
+import com.nanlagger.blacksails.entities.game.Field
+import Field.TypeField
 import com.nanlagger.blacksails.utils.math
 import com.nanlagger.blacksails.utils.math.Position
 import com.sun.org.apache.bcel.internal.generic.LAND
@@ -23,9 +24,9 @@ object Graph {
     val matrix = (for(i <- (row - 1) to (row + 1); j <- (column - 1) to (column + 1)) yield Position(i,j) ).toSet
     val setPosition: Set[Position] = {
       if (row % 2 == 1)
-        matrix &~ Set(Position(row - 1, column - 1), Position(row - 1, column + 1))
+        matrix &~ Set(Position(row - 1, column - 1), Position(row + 1, column - 1))
       else
-        matrix &~ Set(Position(row + 1, column - 1), Position(row + 1, column + 1))
+        matrix &~ Set(Position(row - 1, column + 1), Position(row + 1, column + 1))
     }
     if(depth == 1) {
       setPosition

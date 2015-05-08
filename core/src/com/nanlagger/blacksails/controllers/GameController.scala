@@ -4,13 +4,16 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.ai.AIController
-import com.nanlagger.blacksails.controllers.listeners.ShipListener
+import com.nanlagger.blacksails.controllers.listeners.{TownListener, ShipListener}
+import com.nanlagger.blacksails.entities.UnitCreator.UnitType
 import com.nanlagger.blacksails.entities._
+import com.nanlagger.blacksails.entities.game.ships.Ship
+import com.nanlagger.blacksails.entities.game.{Town, GameUnit}
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.WayActor
-import com.nanlagger.blacksails.views.actors.hud.ButtonActor
+import com.nanlagger.blacksails.views.actors.hud.{WindowActor, ButtonActor}
 
 /**
  * Created by NaNLagger on 04.04.15.
@@ -27,25 +30,14 @@ object GameController {
 
   def initNewGame() = {
     FieldEntities(20)
-    PlayerEntities(2)
-    val nUnit = new TestShip(PlayerEntities.getCurrentPlayer.id, Position(2,2))
-    val nUnit1 = new TestShip(PlayerEntities.getCurrentPlayer.id, Position(2,1))
-    val nUnit2 = new TestShip(PlayerEntities.getPlayer(2).id, Position(4,4))
-    val nUnit3 = new TestShip(PlayerEntities.getPlayer(2).id, Position(4,6))
-    nUnit.actor.addListener(new ShipListener)
-    nUnit1.actor.addListener(new ShipListener)
-    nUnit2.actor.addListener(new ShipListener)
-    nUnit3.actor.addListener(new ShipListener)
-    UnitEntities.addUnit(nUnit)
-    UnitEntities.addUnit(nUnit1)
-    UnitEntities.addUnit(nUnit2)
-    UnitEntities.addUnit(nUnit3)
     for(field <- FieldEntities.getAll())
       GameScreen.mainGroup.addActor(field.actor)
-    GameScreen.mainGroup.addActor(nUnit.actor)
-    GameScreen.mainGroup.addActor(nUnit1.actor)
-    GameScreen.mainGroup.addActor(nUnit2.actor)
-    GameScreen.mainGroup.addActor(nUnit3.actor)
+    PlayerEntities(2)
+    UnitCreator.createUnit(UnitType.ExpeditionShip, PlayerEntities.getCurrentPlayer.id, Position(2,2))
+    //UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getCurrentPlayer.id, Position(2,1))
+    UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,4))
+    UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,6))
+    //UnitCreator.createUnit(UnitType.Town, PlayerEntities.getCurrentPlayer.id, Position(2,4))
     GameScreen.mainGroup.addActor(WayActor)
     val startButton = new ButtonActor
     startButton.setPosition(0,0)
@@ -56,12 +48,16 @@ object GameController {
         true
       }
     })
+
     GameScreen.hudGroup.addActor(startButton)
     PlayerEntities.getCurrentPlayer.resetVision()
   }
 
   def changePositionMap(delta: Vector2): Unit = {
     if (state != CtrlState.ObjectDragged) {
+      if(delta.len() > 10) {
+        state = CtrlState.ClearFocus
+      }
       val group = GameScreen.mainGroup
       group.setPosition(group.getX - delta.x, group.getY - delta.y)
       val left = -Utils.SCREEN_WIDTH/2
@@ -135,6 +131,18 @@ object GameController {
           case unit: Ship => {
             unit.move(Utils.pointToPosition(new Vector2(x, y)))
             PlayerEntities.getCurrentPlayer.resetVision()
+          }
+          case _ => {}
+        }
+      }
+      case CtrlState.ObjectDetected => {
+        focusUnit match {
+          case unit: Town => {
+            val window = new WindowActor
+            window.setSize(700,500)
+            window.setPosition(Utils.SCREEN_WIDTH/2 - window.getWidth/2,Utils.SCREEN_HEIGHT/2 - window.getHeight/2)
+            GameScreen.hudGroup.addActor(window)
+            window.title = unit.name
           }
           case _ => {}
         }

@@ -1,9 +1,8 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game
 
-import com.badlogic.gdx.Gdx
-import com.nanlagger.blacksails.entities.Field.TypeField
+import com.nanlagger.blacksails.entities.game.Field.TypeField
 import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.actors.{FieldActor, GameActor, Drawable}
+import com.nanlagger.blacksails.views.actors.{Drawable, FieldActor, GameActor}
 
 /**
  * Created by NaNLagger on 31.03.15.

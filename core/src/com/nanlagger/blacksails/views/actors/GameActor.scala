@@ -1,8 +1,7 @@
 package com.nanlagger.blacksails.views.actors
 
 import com.badlogic.gdx.scenes.scene2d.Actor
-import com.nanlagger.blacksails.entities.GameUnit
-import com.nanlagger.blacksails.entities.Field
+import com.nanlagger.blacksails.entities.game.{Field, GameUnit}
 import com.nanlagger.blacksails.utils.Utils
 
 /**

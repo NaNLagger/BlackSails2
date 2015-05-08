@@ -1,5 +1,6 @@
 package com.nanlagger.blacksails.entities
 
+import com.nanlagger.blacksails.entities.game.Field
 import com.nanlagger.blacksails.utils.math.Position
 
 import scala.util.Random

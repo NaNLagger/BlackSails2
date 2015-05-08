@@ -1,9 +1,7 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game
 
-import com.badlogic.gdx.math.Vector2
+import com.nanlagger.blacksails.entities.{FieldEntities, UnitEntities}
 import com.nanlagger.blacksails.utils.math.Position
-
-import scala.collection.mutable.ArrayBuffer
 
 /**
  * Created by NaNLagger on 31.03.15.
