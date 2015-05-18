@@ -21,7 +21,28 @@ object Field {
   }
 
   def apply(row: Int, column: Int, typeField: TypeField.Value): Field = {
-    new Field(new Position(row, column), typeField)
+    val incomeType: IncomeType.Value = if(typeField == TypeField.LAND) {
+      val random = new Random()
+      (Math.abs(random.nextInt()) % 3) match {
+        case 0 => IncomeType.LAND_GRASS
+        case 1 => IncomeType.LAND_HILL
+        case 2 => IncomeType.LAND_MOUNT
+        case _ => IncomeType.LAND_GRASS
+      }
+    } else {
+      val random = new Random()
+      (Math.abs(random.nextInt()) % 3) match {
+        case 0 => IncomeType.OCEAN_OCEAN
+        case 1 => IncomeType.OCEAN_SEA
+        case 2 => IncomeType.OCEAN_REEFS
+        case _ => IncomeType.OCEAN_OCEAN
+      }
+    }
+    new Field(new Position(row, column), typeField, incomeType)
+  }
+
+  def apply(row: Int, column: Int, typeField: TypeField.Value, incomeType: IncomeType.Value): Field = {
+    new Field(new Position(row, column), typeField, incomeType)
   }
 
   def apply = new Field(new Position)
@@ -36,24 +57,7 @@ object Field {
   }
 }
 
-class Field(val position: Position, val typeField: TypeField.Value = TypeField.OCEAN) extends Drawable {
-  val incomeType: IncomeType.Value = if(typeField == TypeField.LAND) {
-    val random = new Random()
-    (Math.abs(random.nextInt()) % 3) match {
-      case 0 => IncomeType.LAND_GRASS
-      case 1 => IncomeType.LAND_HILL
-      case 2 => IncomeType.LAND_MOUNT
-      case _ => IncomeType.LAND_GRASS
-    }
-  } else {
-    val random = new Random()
-    (Math.abs(random.nextInt()) % 3) match {
-      case 0 => IncomeType.OCEAN_OCEAN
-      case 1 => IncomeType.OCEAN_SEA
-      case 2 => IncomeType.OCEAN_REEFS
-      case _ => IncomeType.OCEAN_OCEAN
-    }
-  }
+class Field(val position: Position, val typeField: TypeField.Value = TypeField.OCEAN, val incomeType: IncomeType.Value = IncomeType.OCEAN_OCEAN) extends Drawable {
   var visionFlag = false
   var income = 1
 

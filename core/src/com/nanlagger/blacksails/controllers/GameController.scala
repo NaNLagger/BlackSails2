@@ -15,6 +15,8 @@ import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.WayActor
 import com.nanlagger.blacksails.views.actors.hud.{HudCreator, WindowActor, ButtonActor}
 
+import scala.io.Source
+
 /**
  * Created by NaNLagger on 04.04.15.
  * @author Stepan Lyashenko
@@ -29,7 +31,8 @@ object GameController {
   }
 
   def initNewGame() = {
-    FieldEntities(20)
+    //FieldEntities(20)
+    FieldEntities(Source.fromFile("data/maps/main_map.json").getLines().mkString(""))
     for(field <- FieldEntities.getAll())
       GameScreen.mainGroup.addActor(field.actor)
     PlayerEntities(3)
