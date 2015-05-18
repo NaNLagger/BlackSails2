@@ -15,14 +15,15 @@ import com.nanlagger.blacksails.views.utils.TextureLoader
  * @author Stepan Lyashenko
  */
 class WindowActor extends Group {
-  var background = TextureLoader.getTexture("background")
+  var background = TextureLoader.getTexture("bgtown")
   var title = "NewWindow"
   val closeButton = new ButtonActor
   closeButton.setPosition(getWidth - closeButton.getWidth, getHeight)
   closeButton.setSize(20,20)
+  closeButton.label = "x"
   closeButton.addListener(new InputListener {
     override def touchDown (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = {
-      close()
+      hide()
       true
     }
   })
@@ -30,7 +31,7 @@ class WindowActor extends Group {
     val generator: FreeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("data/font/TrebuchetMSRegular.ttf"))
     val parameter: FreeTypeFontParameter = new FreeTypeFontParameter()
     parameter.size = 20
-    val font12: BitmapFont = generator.generateFont(parameter) // font size 12 pixels
+    val font12: BitmapFont = generator.generateFont(parameter)
     generator.dispose()
 
     val shapeRenderer = new ShapeRenderer()
@@ -55,6 +56,14 @@ class WindowActor extends Group {
     super.setSize(width, height)
     mainActor.setSize(width, height)
     closeButton.setPosition(getWidth - closeButton.getWidth, getHeight - closeButton.getHeight)
+  }
+
+  def show(): Unit = {
+    this.setVisible(true)
+  }
+
+  def hide(): Unit = {
+    this.setVisible(false)
   }
 
   def close(): Unit = {

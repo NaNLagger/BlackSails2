@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Timer
 import com.badlogic.gdx.utils.Timer.Task
 import com.nanlagger.blacksails.entities.game.GameUnit
-import com.nanlagger.blacksails.entities.{Graph, UnitEntities}
+import com.nanlagger.blacksails.entities.{FieldEntities, Graph, UnitEntities}
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.actors.WayActor
@@ -44,6 +44,7 @@ abstract class Ship(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPla
       try {
         actor.setPosition(coordWay(current).x, coordWay(current).y)
         current += 1
+        actor.setVisible(FieldEntities.getField(Utils.pointToPosition(new Vector2(actor.getX + actor.getWidth/2, actor.getY + actor.getHeight/2))).visionFlag)
       } catch {
         case x: IndexOutOfBoundsException => this.cancel()
       }
@@ -67,7 +68,6 @@ abstract class Ship(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPla
         currentMP -= w
         Timer.schedule(new MoveTask(position, pos), 0.1f, 0.1f, 20)
         this.position = pos
-        //actor.setPosition(Utils.positionToPoint(pos).x + Utils.widthField / 2, Utils.positionToPoint(pos).y + Utils.widthField / 2)
       }
     }
     WayActor.reset()

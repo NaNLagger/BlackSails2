@@ -13,14 +13,15 @@ import com.nanlagger.blacksails.views.actors.GameActor
 class TownListener extends InputListener {
 
   override def touchDown (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = {
-    GameController.state = CtrlState.ObjectDetected
-    GameController.focusUnit = event.getListenerActor match {
-      case x: GameActor => x.linkObject match {
-        case z: Town => z
-        case _ => null
+      GameController.focusUnit = event.getListenerActor match {
+        case x: GameActor => x.linkObject match {
+          case z: Town => z
+          case _ => null
+        }
       }
-    }
-    true
+    if(GameController.checkPlayer())
+      GameController.state = CtrlState.ObjectDetected
+    GameController.checkPlayer()
   }
 
   override def touchUp (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Unit = {

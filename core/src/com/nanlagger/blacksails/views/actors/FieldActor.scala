@@ -2,7 +2,7 @@ package com.nanlagger.blacksails.views.actors
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.nanlagger.blacksails.entities.game.Field
-import Field.TypeField
+import com.nanlagger.blacksails.entities.game.Field.{IncomeType, TypeField}
 import com.nanlagger.blacksails.entities.game.Field
 import com.nanlagger.blacksails.views.utils.TextureLoader
 
@@ -12,8 +12,19 @@ import com.nanlagger.blacksails.views.utils.TextureLoader
  */
 class FieldActor(link: Field) extends GameActor(link) {
   val texture = link.typeField match {
-    case TypeField.OCEAN => TextureLoader.listTexture("ocean")
-    case TypeField.LAND => TextureLoader.listTexture("land")
+    case TypeField.OCEAN => {
+      link.incomeType match {
+        case IncomeType.OCEAN_SEA => TextureLoader.listTexture("sea")
+        case IncomeType.OCEAN_REEFS => TextureLoader.listTexture("reefs")
+        case _ => TextureLoader.listTexture("ocean")
+      }
+    }
+    case TypeField.LAND => {
+      link.incomeType match {
+        case IncomeType.LAND_HILL => TextureLoader.listTexture("hill")
+        case _ => TextureLoader.listTexture("land")
+      }
+    }
     case _ => TextureLoader.listTexture("field")
   }
   setSize(150, 150)

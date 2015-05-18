@@ -2,6 +2,7 @@ package com.nanlagger.blacksails.entities
 
 import com.nanlagger.blacksails.entities.FieldEntities
 import com.nanlagger.blacksails.entities.game.GameUnit
+import com.nanlagger.blacksails.entities.game.ships.Ship
 import com.nanlagger.blacksails.utils.math.Position
 
 import scala.collection.mutable
@@ -67,10 +68,9 @@ object UnitEntities {
 
   def resetUnit(): Unit = {
     for((id, unit) <- units) {
-      if(FieldEntities.getField(unit.position).visionFlag) {
-        unit.actor.setVisible(true)
-      } else {
-        unit.actor.setVisible(false)
+      unit match {
+        case ship: Ship => ship.actor.setVisible(FieldEntities.getField(unit.position).visionFlag)
+        case _ => ()
       }
     }
   }

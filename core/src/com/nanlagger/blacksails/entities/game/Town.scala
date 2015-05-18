@@ -1,28 +1,44 @@
 package com.nanlagger.blacksails.entities.game
 
-import com.nanlagger.blacksails.entities.{FieldEntities, Graph, UnitCreator}
-import com.nanlagger.blacksails.entities.UnitCreator.UnitType
+import com.nanlagger.blacksails.entities._
+import com.nanlagger.blacksails.entities.UnitCreator.ShipType
+import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.actors.{GameActor, TownActor}
+import com.nanlagger.blacksails.views.GameScreen
+import com.nanlagger.blacksails.views.actors.GameActor
+import com.nanlagger.blacksails.views.actors.hud.WindowActor
+import com.nanlagger.blacksails.views.actors.town.TownActor
 
 /**
  * Created by NaNLagger on 05.05.15.
  * @author Stepan Lyashenko
  */
-class Town(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPlayer, mPosition) {
+class Town(mIdPlayer: Int, mPosition: Position, val portPosition: Position) extends GameUnit(mIdPlayer, mPosition) {
   override var healthPoint: Int = 100
 
   override def reset(): Unit = {}
 
   override val damage: Int = 10
   override val visionRange: Int = 2
-  override val actor: GameActor = new TownActor(this)
   val name = "NewTown " + id
   val townFields = Graph.getPosition(position, 1).filter(FieldEntities.contains(_))
+  FieldEntities.getField(position).income += 1
+  FieldEntities.getField(portPosition).income += 1
 
-  def buyShip(typeShip: Int) = {
-    typeShip match {
-      case _ => UnitCreator.createUnit(UnitType.TestShip, idPlayer, position)
+  override val actor: TownActor = new TownActor(this) // last !important
+
+  def buyShip(typeShip: UnitCreator.ShipType.Value) = {
+    if(!UnitEntities.isUnit(portPosition) && UnitCreator.getCost(typeShip) < PlayerEntities.getPlayer(idPlayer).money) {
+      PlayerEntities.getPlayer(idPlayer).money -= UnitCreator.getCost(typeShip)
+      UnitCreator.createShip(typeShip, idPlayer, portPosition)
     }
+  }
+
+  def showWindow(): Unit = {
+    actor.townWindow.show()
+  }
+
+  def getIncome(): Int = {
+    townFields.map(FieldEntities.getField(_).income).sum
   }
 }

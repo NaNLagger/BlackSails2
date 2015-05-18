@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.scenes.scene2d.Actor
 import com.nanlagger.blacksails.entities.Graph
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
@@ -13,7 +14,7 @@ import com.nanlagger.blacksails.utils.math.Position
  * Created by NaNLagger on 23.04.15.
  * @author Stepan Lyashenko
  */
-object WayActor extends GameActor(null) {
+object WayActor extends Actor {
   private var mGraph: Graph = null
   private var way: Array[Position] = null
   private var mPositions: Map[Position, Int] = null

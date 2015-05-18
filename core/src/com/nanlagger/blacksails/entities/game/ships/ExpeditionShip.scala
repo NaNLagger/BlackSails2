@@ -1,6 +1,6 @@
 package com.nanlagger.blacksails.entities.game.ships
 
-import com.nanlagger.blacksails.entities.UnitCreator.UnitType
+import com.nanlagger.blacksails.entities.UnitCreator.ShipType
 import com.nanlagger.blacksails.entities.{UnitEntities, UnitCreator, Graph, FieldEntities}
 import com.nanlagger.blacksails.entities.game.Field.TypeField
 import com.nanlagger.blacksails.utils.math.Position
@@ -22,9 +22,10 @@ class ExpeditionShip(idPlayer: Int, mPosition: Position) extends Ship(idPlayer, 
   override def move(pos: Position) = {
     val arrayP = Graph.getPosition(position, 1).filter(FieldEntities.getField(_).typeField == TypeField.LAND)
     if(arrayP.contains(pos)) {
-      UnitCreator.createUnit(UnitType.Town, idPlayer, pos)
-      actor.remove()
-      UnitEntities.removeUnit(this)
+      if(UnitCreator.createTown(idPlayer, pos, position)) {
+        actor.remove()
+        UnitEntities.removeUnit(this)
+      }
     } else {
       super.move(pos)
     }

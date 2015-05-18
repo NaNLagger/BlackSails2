@@ -32,7 +32,12 @@ object FieldEntities {
   def getAll(): Array[Field] = {
     for(row <- fields; item <- row) yield item
   }
-  def getField(position: Position) = fields(position.row)(position.column)
+  def getField(position: Position) = {
+    if(contains(position))
+      fields(position.row)(position.column)
+    else
+      null;
+  }
   def getField(row: Int, column: Int) = fields(row)(column)
   @deprecated("not implemented")
   def getFields(position: Position, range: Int): Array[Field] = null

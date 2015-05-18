@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.ai.AIController
 import com.nanlagger.blacksails.controllers.listeners.{TownListener, ShipListener}
-import com.nanlagger.blacksails.entities.UnitCreator.UnitType
+import com.nanlagger.blacksails.entities.UnitCreator.ShipType
 import com.nanlagger.blacksails.entities._
 import com.nanlagger.blacksails.entities.game.ships.Ship
 import com.nanlagger.blacksails.entities.game.{Town, GameUnit}
@@ -13,7 +13,7 @@ import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.WayActor
-import com.nanlagger.blacksails.views.actors.hud.{WindowActor, ButtonActor}
+import com.nanlagger.blacksails.views.actors.hud.{HudCreator, WindowActor, ButtonActor}
 
 /**
  * Created by NaNLagger on 04.04.15.
@@ -32,24 +32,14 @@ object GameController {
     FieldEntities(20)
     for(field <- FieldEntities.getAll())
       GameScreen.mainGroup.addActor(field.actor)
-    PlayerEntities(2)
-    UnitCreator.createUnit(UnitType.ExpeditionShip, PlayerEntities.getCurrentPlayer.id, Position(2,2))
-    //UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getCurrentPlayer.id, Position(2,1))
-    UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,4))
-    UnitCreator.createUnit(UnitType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,6))
-    //UnitCreator.createUnit(UnitType.Town, PlayerEntities.getCurrentPlayer.id, Position(2,4))
+    PlayerEntities(3)
+    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getCurrentPlayer.id, Position(2,2))
+    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(2).id, Position(4,4))
+    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(3).id, Position(6,6))
+    //UnitCreator.createShip(ShipType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,4))
+    //UnitCreator.createShip(ShipType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,6))
+    HudCreator.create()
     GameScreen.mainGroup.addActor(WayActor)
-    val startButton = new ButtonActor
-    startButton.setPosition(0,0)
-    startButton.setSize(100,40)
-    startButton.addListener(new InputListener {
-      override def touchDown (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = {
-        endTurn()
-        true
-      }
-    })
-
-    GameScreen.hudGroup.addActor(startButton)
     PlayerEntities.getCurrentPlayer.resetVision()
   }
 
@@ -138,11 +128,7 @@ object GameController {
       case CtrlState.ObjectDetected => {
         focusUnit match {
           case unit: Town => {
-            val window = new WindowActor
-            window.setSize(700,500)
-            window.setPosition(Utils.SCREEN_WIDTH/2 - window.getWidth/2,Utils.SCREEN_HEIGHT/2 - window.getHeight/2)
-            GameScreen.hudGroup.addActor(window)
-            window.title = unit.name
+            unit.showWindow()
           }
           case _ => {}
         }

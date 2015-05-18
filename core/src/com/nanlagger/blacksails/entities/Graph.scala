@@ -54,11 +54,13 @@ object Graph {
       }
       setPosition = for(item <- setPosition; if(FieldEntities.contains(item) && !UnitEntities.isUnit(item))) yield {
         val field = FieldEntities.getField(item)
-        val w: Int = field.typeField match {
+        var w: Int = field.typeField match {
           case TypeField.LAND => Int.MaxValue
           case TypeField.OCEAN => 1
           case _ => Int.MaxValue
         }
+        if(FieldEntities.getField(pos).typeField == TypeField.LAND)
+          w = Int.MaxValue
         graph.setLink(pos, item, w)
         item
       }

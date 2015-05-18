@@ -15,5 +15,6 @@ class TestShip(mIdPlayer: Int, mPosition: Position) extends Ship(mIdPlayer, mPos
   override val visionRange: Int = 3
   override val damage: Int = 10
   override val actor: GameActor = new TestShipActor(this)
+
   reset()
 }

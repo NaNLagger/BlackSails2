@@ -2,7 +2,7 @@ package com.nanlagger.blacksails.entities.game
 
 import com.nanlagger.blacksails.entities.{Graph, UnitEntities}
 import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.actors.Drawable
+import com.nanlagger.blacksails.views.actors.{UnitActor, Drawable}
 
 /**
  * Created by NaNLagger on 31.03.15.
@@ -26,6 +26,7 @@ abstract class GameUnit(val idPlayer: Int, var position: Position) extends Drawa
 
   def hit(damage: Int) = {
     healthPoint -= damage
+    actor.asInstanceOf[UnitActor].hit(damage)
     if (!isLive) {
       actor.remove()
       UnitEntities.removeUnit(this)

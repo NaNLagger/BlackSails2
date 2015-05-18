@@ -7,8 +7,8 @@ import com.nanlagger.blacksails.MyGdxGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = 900;
-        config.height = 600;
+        config.width = 1024;
+        config.height = 578;
 		new LwjglApplication(new MyGdxGame(), config);
 	}
 }
