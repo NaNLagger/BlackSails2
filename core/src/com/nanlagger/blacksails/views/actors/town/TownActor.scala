@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
 import com.nanlagger.blacksails.entities.PlayerEntities
-import com.nanlagger.blacksails.entities.game.Town
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.{UnitActor, GameActor}
@@ -27,6 +27,11 @@ class TownActor(link: Town) extends UnitActor(link) {
   val townWindow = TownWindow(link)
   GameScreen.hudGroup.addActor(townWindow)
   setVisible(true)
+
+  val nameLabel = new ButtonActor
+  nameLabel.label = link.name
+  nameLabel.setPosition(getX + 10, getY + 100)
+  nameLabel.setSize(130, 30)
 
   trait Hexagon {
 
@@ -57,5 +62,6 @@ class TownActor(link: Town) extends UnitActor(link) {
     batch.draw(TextureLoader.listTexture("town"), getX, getY, getWidth, getHeight)
     val portCoord = Utils.positionToPoint(link.portPosition)
     batch.draw(TextureLoader.listTexture("port"), portCoord.x + Utils.widthField/2 - getWidth/4, portCoord.y + Utils.heightField/2 - getHeight/4, getWidth/2, getHeight/2)
+    nameLabel.draw(batch, parentAlpha)
   }
 }

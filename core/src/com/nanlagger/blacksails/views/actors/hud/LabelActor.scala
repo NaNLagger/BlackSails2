@@ -1,6 +1,6 @@
 package com.nanlagger.blacksails.views.actors.hud
 
-import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.{TextureRegion, Batch}
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.nanlagger.blacksails.views.utils.FontLoader
 

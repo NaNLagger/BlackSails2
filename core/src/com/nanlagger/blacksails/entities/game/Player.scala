@@ -1,6 +1,7 @@
 package com.nanlagger.blacksails.entities.game
 
 import com.badlogic.gdx.graphics.Color
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.entities.{FieldEntities, UnitEntities}
 import com.nanlagger.blacksails.utils.math.Position
 

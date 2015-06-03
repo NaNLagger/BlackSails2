@@ -5,7 +5,7 @@ import com.nanlagger.blacksails.entities.{UnitEntities, UnitCreator, Graph, Fiel
 import com.nanlagger.blacksails.entities.game.Field.TypeField
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.actors.GameActor
-import com.nanlagger.blacksails.views.actors.ships.TestShipActor
+import com.nanlagger.blacksails.views.actors.ships.{ExpeditionShipActor, TestShipActor}
 
 /**
  * Created by NaNLagger on 07.05.15.
@@ -17,7 +17,7 @@ class ExpeditionShip(idPlayer: Int, mPosition: Position) extends Ship(idPlayer, 
   override val damage: Int = 3
   override var healthPoint: Int = 21
   override val visionRange: Int = 2
-  override val actor: GameActor = new TestShipActor(this)
+  override val actor: GameActor = new ExpeditionShipActor(this)
 
   override def move(pos: Position) = {
     val arrayP = Graph.getPosition(position, 1).filter(FieldEntities.getField(_).typeField == TypeField.LAND)

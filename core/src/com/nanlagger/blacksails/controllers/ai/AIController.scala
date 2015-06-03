@@ -2,9 +2,10 @@ package com.nanlagger.blacksails.controllers.ai
 
 import com.badlogic.gdx.Gdx
 import com.nanlagger.blacksails.entities.game.Field.TypeField
-import com.nanlagger.blacksails.entities.game.{Town, Player}
+import com.nanlagger.blacksails.entities.game.Player
 import com.nanlagger.blacksails.entities._
 import com.nanlagger.blacksails.entities.game.ships.{ExpeditionShip, Ship}
+import com.nanlagger.blacksails.entities.game.towns.Town
 
 import scala.util.Random
 
@@ -47,7 +48,7 @@ class AIController(val player: Player) {
           }
         }
         case town: Town => {
-          town.buyShip(UnitCreator.ShipType.TestShip)
+          town.buyShip(UnitCreator.ShipType.BattleShip)
         }
       }
     }

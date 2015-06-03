@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.scenes.scene2d.Actor
-import com.nanlagger.blacksails.entities.Graph
+import com.nanlagger.blacksails.entities.{FieldEntities, Graph}
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 

@@ -1,8 +1,8 @@
 package com.nanlagger.blacksails.entities
 
 import com.nanlagger.blacksails.controllers.listeners.{TownListener, ShipListener}
-import com.nanlagger.blacksails.entities.game.Town
-import com.nanlagger.blacksails.entities.game.ships.{ExpeditionShip, TestShip}
+import com.nanlagger.blacksails.entities.game.ships.{BattleShip, ExpeditionShip, TestShip}
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.hud.HudCreator
@@ -14,7 +14,7 @@ import com.nanlagger.blacksails.views.actors.hud.HudCreator
 object UnitCreator {
 
   object ShipType extends Enumeration {
-    val TestShip, ExpeditionShip = Value
+    val TestShip, ExpeditionShip, BattleShip = Value
   }
 
   def createShip(unitType: ShipType.Value, idPlayer: Int, position: Position): Boolean = {
@@ -27,6 +27,12 @@ object UnitCreator {
       }
       case ShipType.ExpeditionShip => {
         val nUnit = new ExpeditionShip(idPlayer, position)
+        nUnit.actor.addListener(new ShipListener)
+        UnitEntities.addUnit(nUnit)
+        GameScreen.mainGroup.addActor(nUnit.actor)
+      }
+      case ShipType.BattleShip => {
+        val nUnit = new BattleShip(idPlayer, position)
         nUnit.actor.addListener(new ShipListener)
         UnitEntities.addUnit(nUnit)
         GameScreen.mainGroup.addActor(nUnit.actor)
@@ -56,6 +62,7 @@ object UnitCreator {
     unitType match {
       case ShipType.TestShip => 100
       case ShipType.ExpeditionShip => 270
+      case ShipType.BattleShip => 120
       case _ => 0
     }
   }

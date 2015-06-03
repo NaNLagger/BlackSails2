@@ -6,10 +6,11 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{Actor, Group, InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.entities.{UnitCreator, FieldEntities}
 import com.nanlagger.blacksails.entities.UnitCreator.ShipType
 import com.nanlagger.blacksails.entities.game.ships.TestShip
-import com.nanlagger.blacksails.entities.game.{Field, Town}
+import com.nanlagger.blacksails.entities.game.Field
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.GameScreen
@@ -34,17 +35,17 @@ object TownWindow {
     townWindow.setPosition(Utils.SCREEN_WIDTH/2 - townWindow.getWidth/2,Utils.SCREEN_HEIGHT/2 - townWindow.getHeight/2)
     townWindow.title = town.name
 
-    val groupsShip = UnitCreator.ShipType.values.map((x) => {
+    val groupsShip = UnitCreator.ShipType.values.filter(_ != UnitCreator.ShipType.TestShip).map((x) => {
       shipWindow(town, x)
     })
-    var margin = 0
+    var margin = 20
     groupsShip.map((x) => {
       x.setPosition(margin, 0)
-      margin += 100
+      margin += 120
       townWindow.addActor(x)
     })
     val fieldGroup = fieldWindow(town)
-    fieldGroup.setPosition(0 + fieldGroup.getWidth/2, townWindow.getHeight - fieldGroup.getHeight/2)
+    fieldGroup.setPosition(10 + fieldGroup.getWidth/2, townWindow.getHeight - fieldGroup.getHeight/2)
     townWindow.addActor(fieldGroup)
     townWindow.hide()
     townWindow
@@ -53,17 +54,22 @@ object TownWindow {
   private def shipWindow(town: Town, typeShip: UnitCreator.ShipType.Value) = {
     val groupShip = new Group()
     groupShip.addActor(new ShipIcon {
-      setPosition(0, 80)
+      texture = typeShip match {
+        case UnitCreator.ShipType.ExpeditionShip => TextureLoader.getTexture("expedition_ship_r")
+        case UnitCreator.ShipType.BattleShip => TextureLoader.getTexture("fregat_ship_r")
+        case _ => TextureLoader.getTexture("ship")
+      }
+      setPosition(10, 60)
     })
 
     groupShip.addActor(new LabelActor {
-      setPosition(0, 60)
+      setPosition(10, 60)
       label = "Cost: " + UnitCreator.getCost(typeShip)
     })
 
     val buttonBuy = new ButtonActor
     buttonBuy.label = "Buy Ship"
-    buttonBuy.setPosition(0,0)
+    buttonBuy.setPosition(0,5)
     buttonBuy.setSize(100, 40)
     buttonBuy.addListener(new InputListener {
       override def touchDown (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = {

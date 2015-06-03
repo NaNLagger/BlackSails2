@@ -1,12 +1,8 @@
-package com.nanlagger.blacksails.entities.game
+package com.nanlagger.blacksails.entities.game.towns
 
 import com.nanlagger.blacksails.entities._
-import com.nanlagger.blacksails.entities.UnitCreator.ShipType
-import com.nanlagger.blacksails.utils.Utils
+import com.nanlagger.blacksails.entities.game.GameUnit
 import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.GameScreen
-import com.nanlagger.blacksails.views.actors.GameActor
-import com.nanlagger.blacksails.views.actors.hud.WindowActor
 import com.nanlagger.blacksails.views.actors.town.TownActor
 
 /**
@@ -20,7 +16,7 @@ class Town(mIdPlayer: Int, mPosition: Position, val portPosition: Position) exte
 
   override val damage: Int = 10
   override val visionRange: Int = 2
-  val name = "NewTown " + id
+  val name = TownsName.getRandomName()
   val townFields = Graph.getPosition(position, 1).filter(FieldEntities.contains(_))
   FieldEntities.getField(position).income += 1
   FieldEntities.getField(portPosition).income += 1

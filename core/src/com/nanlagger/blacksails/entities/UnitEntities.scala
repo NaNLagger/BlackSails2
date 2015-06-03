@@ -1,6 +1,5 @@
 package com.nanlagger.blacksails.entities
 
-import com.nanlagger.blacksails.entities.FieldEntities
 import com.nanlagger.blacksails.entities.game.GameUnit
 import com.nanlagger.blacksails.entities.game.ships.Ship
 import com.nanlagger.blacksails.utils.math.Position

@@ -1,6 +1,7 @@
 package com.nanlagger.blacksails.controllers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.ai.AIController
@@ -8,11 +9,12 @@ import com.nanlagger.blacksails.controllers.listeners.{TownListener, ShipListene
 import com.nanlagger.blacksails.entities.UnitCreator.ShipType
 import com.nanlagger.blacksails.entities._
 import com.nanlagger.blacksails.entities.game.ships.Ship
-import com.nanlagger.blacksails.entities.game.{Town, GameUnit}
+import com.nanlagger.blacksails.entities.game.GameUnit
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.utils.math.Position
 import com.nanlagger.blacksails.views.GameScreen
-import com.nanlagger.blacksails.views.actors.WayActor
+import com.nanlagger.blacksails.views.actors.{FPSActor, WayActor}
 import com.nanlagger.blacksails.views.actors.hud.{HudCreator, WindowActor, ButtonActor}
 
 import scala.io.Source
@@ -31,14 +33,16 @@ object GameController {
   }
 
   def initNewGame() = {
-    //FieldEntities(20)
-    FieldEntities(Source.fromFile("data/maps/main_map.json").getLines().mkString(""))
+    /*FieldEntities(20)
+    val file: FileHandle = Gdx.files.internal("data/maps/main_map.json")
+    val map: String = file.readString()
+    FieldEntities(map)*/
     for(field <- FieldEntities.getAll())
       GameScreen.mainGroup.addActor(field.actor)
     PlayerEntities(3)
     UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getCurrentPlayer.id, Position(2,2))
-    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(2).id, Position(4,4))
-    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(3).id, Position(6,6))
+    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(2).id, Position(9,9))
+    UnitCreator.createShip(ShipType.ExpeditionShip, PlayerEntities.getPlayer(3).id, Position(18,16))
     //UnitCreator.createShip(ShipType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,4))
     //UnitCreator.createShip(ShipType.TestShip, PlayerEntities.getPlayer(2).id, Position(4,6))
     HudCreator.create()

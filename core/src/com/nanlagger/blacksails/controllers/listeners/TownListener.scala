@@ -3,7 +3,7 @@ package com.nanlagger.blacksails.controllers.listeners
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
-import com.nanlagger.blacksails.entities.game.Town
+import com.nanlagger.blacksails.entities.game.towns.Town
 import com.nanlagger.blacksails.views.actors.GameActor
 
 /**

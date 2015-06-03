@@ -6,6 +6,7 @@ import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.entities.PlayerEntities
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.GameScreen
+import com.nanlagger.blacksails.views.actors.FPSActor
 import com.nanlagger.blacksails.views.utils.{FontLoader, TextureLoader}
 
 /**
@@ -37,6 +38,7 @@ object HudCreator {
 
     GameScreen.hudGroup.addActor(endTurnButton)
     GameScreen.hudGroup.addActor(moneyBar)
+    GameScreen.hudGroup.addActor(new FPSActor)
   }
 
   def update(): Unit = {

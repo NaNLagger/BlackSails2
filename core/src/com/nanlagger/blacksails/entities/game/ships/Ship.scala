@@ -21,6 +21,7 @@ abstract class Ship(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPla
   var graph: Graph = null
   var currentMP : Int = movementPoints
   var state: Boolean = true
+  var angleRotate: Float = 0
 
   class MoveTask(start:Position, finish: Position) extends Task {
     val way = graph.getWay(start, finish)
@@ -31,6 +32,7 @@ abstract class Ship(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPla
       val temp = new Vector2(c)
       temp.sub(s)
       temp.limit(temp.len()/10)
+      angleRotate = temp.angle()
       if(c != s) {
         for (i <- 1 to 10) {
           coordWay += new Vector2(s.add(temp))
@@ -75,6 +77,7 @@ abstract class Ship(mIdPlayer: Int, mPosition: Position) extends GameUnit(mIdPla
 
   def startMove() = {
     graph = Graph.createGraph(position, movementPoints)
+    WayActor.setPosition(actor.getX, actor.getY)
     WayActor.setPositions(graph.getWays(position).filter((x) => x._2 <= currentMP))
     WayActor(graph)
     if(state)

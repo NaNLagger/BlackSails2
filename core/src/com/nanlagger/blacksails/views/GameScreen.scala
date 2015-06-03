@@ -1,6 +1,7 @@
 package com.nanlagger.blacksails.views
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.{Gdx, Screen}
 import com.badlogic.gdx.graphics.{FPSLogger, GL20, Texture, OrthographicCamera}
@@ -17,7 +18,27 @@ object GameScreen extends Screen {
   val stage: Stage = new Stage()
   val camera: OrthographicCamera = new OrthographicCamera(Utils.SCREEN_WIDTH, Utils.SCREEN_HEIGHT)
   stage.getViewport.setCamera(camera)
-  val mainGroup = new Group
+  val mainGroup = new Group {
+    override def setPosition(x: Float, y: Float): Unit = {
+      super.setPosition(x, y)
+      updateCullingArea()
+    }
+
+    override def setX(x: Float): Unit = {
+      super.setX(x)
+      updateCullingArea()
+    }
+
+    override def setY(y: Float): Unit = {
+      super.setY(y)
+      updateCullingArea()
+    }
+
+    def updateCullingArea(): Unit = {
+      setCullingArea(new Rectangle(Math.abs(getX) - (Utils.SCREEN_WIDTH/2 + Utils.widthField), Math.abs(getY) - (Utils.SCREEN_HEIGHT/2 + Utils.heightField), Utils.SCREEN_WIDTH + Utils.widthField *2 , Utils.SCREEN_HEIGHT + Utils.heightField*2))
+    }
+  }
+  mainGroup.setCullingArea(new Rectangle(0,0, Utils.SCREEN_WIDTH, Utils.SCREEN_HEIGHT))
   mainGroup.setPosition(-100, -100)
   stage.addActor(mainGroup)
   mainGroup.addListener(new MainSceneInputListener)
