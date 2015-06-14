@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Timer
 import com.badlogic.gdx.utils.Timer.Task
-import com.nanlagger.blacksails.entities.{PlayerEntities, FieldEntities}
-import com.nanlagger.blacksails.entities.game.{Player, GameUnit}
+import com.nanlagger.blacksails.entities.game.fields.FieldEntities
+import com.nanlagger.blacksails.entities.game.players.{PlayerEntities, Player}
+import com.nanlagger.blacksails.entities.game.units.GameUnit
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.actors.hud.{ButtonActor, LabelActor}
 import com.nanlagger.blacksails.views.utils.{TextureLoader, FontLoader}
@@ -21,7 +22,7 @@ class UnitActor(link: GameUnit) extends GameActor(link) {
 
   private val healthLabel = new ButtonActor
   private val hitLabel = new LabelActor
-  setVisible(FieldEntities.getField(Utils.pointToPosition(new Vector2(getX + getWidth/2, getY + getHeight/2))).visionFlag)
+  //setVisible(FieldEntities.getField(Utils.pointToPosition(new Vector2(getX + getWidth/2, getY + getHeight/2))).visionFlag)
   healthLabel.background = TextureLoader.getTexture("black_label")
   healthLabel.setSize(40, 20)
 
@@ -54,7 +55,7 @@ class UnitActor(link: GameUnit) extends GameActor(link) {
     shapeRenderer.setTransformMatrix(batch.getTransformMatrix)
     batch.end()
     shapeRenderer.begin(ShapeType.Filled)
-    val color: Color = PlayerEntities.getPlayer(link.idPlayer).getColorPlayer().cpy()
+    val color: Color = PlayerEntities.getPlayer(link.idPlayer).getColorPlayer.cpy()
     shapeRenderer.setColor(color)
     shapeRenderer.box(getX + 100, getY + 10, 0, 40, 20, 0)
     shapeRenderer.end()

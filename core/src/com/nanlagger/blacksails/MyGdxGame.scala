@@ -8,11 +8,11 @@ import com.badlogic.gdx.ApplicationAdapter
  */
 class MyGdxGame extends ApplicationAdapter {
 
-  override def create {
+  override def create() {
     GameMain.create()
   }
 
-  override def render {
+  override def render() {
     GameMain.render()
   }
 }

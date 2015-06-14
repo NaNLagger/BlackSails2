@@ -1,15 +1,16 @@
-package com.nanlagger.blacksails.entities.game.towns
+package com.nanlagger.blacksails.entities.game.units.towns
 
-import com.nanlagger.blacksails.entities._
-import com.nanlagger.blacksails.entities.game.GameUnit
-import com.nanlagger.blacksails.utils.math.Position
+import com.nanlagger.blacksails.entities.game.fields.FieldEntities
+import com.nanlagger.blacksails.entities.game.players.PlayerEntities
+import com.nanlagger.blacksails.entities.game.units.{UnitEntities, UnitCreator, GameUnit}
+import com.nanlagger.blacksails.utils.math.CubePosition
 import com.nanlagger.blacksails.views.actors.town.TownActor
 
 /**
  * Created by NaNLagger on 05.05.15.
  * @author Stepan Lyashenko
  */
-class Town(mIdPlayer: Int, mPosition: Position, val portPosition: Position) extends GameUnit(mIdPlayer, mPosition) {
+class Town(mIdPlayer: Int, mPosition: CubePosition, val portPosition: CubePosition) extends GameUnit(mIdPlayer, mPosition) {
   override var healthPoint: Int = 100
 
   override def reset(): Unit = {}
@@ -17,7 +18,7 @@ class Town(mIdPlayer: Int, mPosition: Position, val portPosition: Position) exte
   override val damage: Int = 10
   override val visionRange: Int = 2
   val name = TownsName.getRandomName()
-  val townFields = Graph.getPosition(position, 1).filter(FieldEntities.contains(_))
+  val townFields = position.reachable(1, Set()).filter(FieldEntities.contains(_))
   FieldEntities.getField(position).income += 1
   FieldEntities.getField(portPosition).income += 1
 

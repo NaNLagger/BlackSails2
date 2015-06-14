@@ -1,6 +1,4 @@
-package com.nanlagger.blacksails.entities
-
-import com.nanlagger.blacksails.entities.game.Player
+package com.nanlagger.blacksails.entities.game.players
 
 /**
  * Created by NaNLagger on 31.03.15.

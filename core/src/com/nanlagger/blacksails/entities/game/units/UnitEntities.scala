@@ -1,12 +1,9 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game.units
 
-import com.nanlagger.blacksails.entities.game.GameUnit
-import com.nanlagger.blacksails.entities.game.ships.Ship
-import com.nanlagger.blacksails.utils.math.Position
+import com.nanlagger.blacksails.entities.game.fields.FieldEntities
+import com.nanlagger.blacksails.entities.game.units.ships.Ship
 
 import scala.collection.mutable
-import scala.collection.mutable.HashMap
-import scala.collection.mutable.ArrayBuffer
 
 /**
  * Created by NaNLagger on 31.03.15.

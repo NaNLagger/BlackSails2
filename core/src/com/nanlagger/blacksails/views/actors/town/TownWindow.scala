@@ -6,17 +6,13 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.{Actor, Group, InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
-import com.nanlagger.blacksails.entities.game.towns.Town
-import com.nanlagger.blacksails.entities.{UnitCreator, FieldEntities}
-import com.nanlagger.blacksails.entities.UnitCreator.ShipType
-import com.nanlagger.blacksails.entities.game.ships.TestShip
-import com.nanlagger.blacksails.entities.game.Field
+import com.nanlagger.blacksails.entities.game.fields.{Field, FieldEntities}
+import com.nanlagger.blacksails.entities.game.units.UnitCreator
+import com.nanlagger.blacksails.entities.game.units.towns.Town
 import com.nanlagger.blacksails.utils.Utils
-import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.FieldActor
-import com.nanlagger.blacksails.views.actors.hud.{HudCreator, LabelActor, ButtonActor, WindowActor}
-import com.nanlagger.blacksails.views.actors.ships.{ShipIcon, TestShipActor}
+import com.nanlagger.blacksails.views.actors.hud.{ButtonActor, HudCreator, LabelActor, WindowActor}
+import com.nanlagger.blacksails.views.actors.ships.ShipIcon
 import com.nanlagger.blacksails.views.utils.{FontLoader, TextureLoader}
 
 /**

@@ -1,9 +1,9 @@
-package com.nanlagger.blacksails.entities.game
+package com.nanlagger.blacksails.entities.game.players
 
 import com.badlogic.gdx.graphics.Color
-import com.nanlagger.blacksails.entities.game.towns.Town
-import com.nanlagger.blacksails.entities.{FieldEntities, UnitEntities}
-import com.nanlagger.blacksails.utils.math.Position
+import com.nanlagger.blacksails.entities.game.units.UnitEntities
+import com.nanlagger.blacksails.entities.game.units.towns.Town
+import com.nanlagger.blacksails.utils.math.CubePosition
 
 /**
  * Created by NaNLagger on 31.03.15.
@@ -12,7 +12,7 @@ import com.nanlagger.blacksails.utils.math.Position
 object Player {
   var idGenerator = 0
   val colorArray = Array(new Color(1,0,0,1), new Color(0,1,0,1), new Color(0,0,1,1))
-  def getIdGenerator() = {
+  def getIdGenerator = {
     idGenerator += 1
     idGenerator
   }
@@ -20,22 +20,21 @@ object Player {
 
 class Player {
   val id: Int = Player.getIdGenerator
-  var visionField: Array[Position] = null
+  var visionField: Array[CubePosition] = null
   var money: Int = 100
 
   def resetVision() = {
-    visionField = UnitEntities.getPlayerUnit(id).flatMap(_.getVision())
-    FieldEntities.resetVision(visionField)
+    visionField = UnitEntities.getPlayerUnit(id).flatMap(_.getVision)
   }
 
   def resetUnit(): Unit = {
-    money += getIncome()
+    money += getIncome
     for(unit <- UnitEntities.getPlayerUnit(id)) {
       unit.reset()
     }
   }
 
-  def getIncome(): Int = {
+  def getIncome: Int = {
     (for(unit <- UnitEntities.getPlayerUnit(id)) yield {
       unit match {
         case x: Town => x.getIncome()
@@ -44,7 +43,7 @@ class Player {
     }).sum
   }
 
-  def getColorPlayer(): Color = {
+  def getColorPlayer: Color = {
     Player.colorArray(id - 1)
   }
 }

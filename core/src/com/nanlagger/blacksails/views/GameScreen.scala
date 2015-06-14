@@ -1,12 +1,9 @@
 package com.nanlagger.blacksails.views
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
 import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.scenes.scene2d.Group
+import com.badlogic.gdx.scenes.scene2d.{Group, Stage}
 import com.badlogic.gdx.{Gdx, Screen}
-import com.badlogic.gdx.graphics.{FPSLogger, GL20, Texture, OrthographicCamera}
-import com.badlogic.gdx.scenes.scene2d.{Actor, Stage}
-import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.listeners.MainSceneInputListener
 import com.nanlagger.blacksails.utils.Utils
 
@@ -69,7 +66,7 @@ object GameScreen extends Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
 
     stage.act(delta)
-    stage.draw
+    stage.draw()
   }
 
   override def resume(): Unit = {

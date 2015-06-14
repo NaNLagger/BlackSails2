@@ -1,9 +1,9 @@
-package com.nanlagger.blacksails.entities
+package com.nanlagger.blacksails.entities.game.units
 
-import com.nanlagger.blacksails.controllers.listeners.{TownListener, ShipListener}
-import com.nanlagger.blacksails.entities.game.ships.{BattleShip, ExpeditionShip, TestShip}
-import com.nanlagger.blacksails.entities.game.towns.Town
-import com.nanlagger.blacksails.utils.math.Position
+import com.nanlagger.blacksails.controllers.listeners.{ShipListener, TownListener}
+import com.nanlagger.blacksails.entities.Graph
+import com.nanlagger.blacksails.entities.game.units.ships.{BattleShip, ExpeditionShip, TestShip}
+import com.nanlagger.blacksails.entities.game.units.towns.Town
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.hud.HudCreator
 

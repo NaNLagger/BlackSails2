@@ -1,8 +1,7 @@
-package com.nanlagger.blacksails.entities.game
+package com.nanlagger.blacksails.entities.game.units
 
-import com.nanlagger.blacksails.entities.{Graph, UnitEntities}
-import com.nanlagger.blacksails.utils.math.Position
-import com.nanlagger.blacksails.views.actors.{UnitActor, Drawable}
+import com.nanlagger.blacksails.utils.math.{CubePosition, OffsetPosition}
+import com.nanlagger.blacksails.views.actors.{Drawable, UnitActor}
 
 /**
  * Created by NaNLagger on 31.03.15.
@@ -10,13 +9,13 @@ import com.nanlagger.blacksails.views.actors.{UnitActor, Drawable}
  */
 object GameUnit {
   private var idGenerator = 0
-  private def getCurrentId() = {
+  private def getCurrentId = {
     idGenerator += 1
     idGenerator
   }
 }
 
-abstract class GameUnit(val idPlayer: Int, var position: Position) extends Drawable {
+abstract class GameUnit(val idPlayer: Int, var position: OffsetPosition) extends Drawable {
   val id: Int = GameUnit.getCurrentId
   var healthPoint: Int
   val visionRange: Int
@@ -34,8 +33,8 @@ abstract class GameUnit(val idPlayer: Int, var position: Position) extends Drawa
     damage
   }
 
-  def getVision(): Array[Position] = {
-    Graph.getPosition(position, visionRange)
+  def getVision: Array[CubePosition] = {
+    position.reachable(visionRange, Set())
   }
 
   def == (other: GameUnit): Boolean = id == other.id

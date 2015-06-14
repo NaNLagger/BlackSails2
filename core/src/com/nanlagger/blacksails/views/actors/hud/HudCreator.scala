@@ -3,7 +3,7 @@ package com.nanlagger.blacksails.views.actors.hud
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
-import com.nanlagger.blacksails.entities.PlayerEntities
+import com.nanlagger.blacksails.entities.game.players.PlayerEntities
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.FPSActor

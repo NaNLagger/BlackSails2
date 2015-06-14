@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
-import com.nanlagger.blacksails.entities.PlayerEntities
-import com.nanlagger.blacksails.entities.game.towns.Town
+import com.nanlagger.blacksails.entities.game.players.PlayerEntities
+import com.nanlagger.blacksails.entities.game.units.towns.Town
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.GameScreen
 import com.nanlagger.blacksails.views.actors.{UnitActor, GameActor}
@@ -45,7 +45,7 @@ class TownActor(link: Town) extends UnitActor(link) {
     batch.end()
     Gdx.gl20.glEnable(GL20.GL_BLEND)
     shapeRenderer.begin(ShapeType.Filled)
-    val color: Color = PlayerEntities.getPlayer(link.idPlayer).getColorPlayer().cpy()
+    val color: Color = PlayerEntities.getPlayer(link.idPlayer).getColorPlayer.cpy()
     shapeRenderer.setColor(color.mul(1, 1, 1, 0.2f))
     val mPositions = link.townFields
     try {

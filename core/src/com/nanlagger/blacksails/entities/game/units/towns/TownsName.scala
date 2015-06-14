@@ -1,4 +1,4 @@
-package com.nanlagger.blacksails.entities.game.towns
+package com.nanlagger.blacksails.entities.game.units.towns
 
 import scala.util.Random
 

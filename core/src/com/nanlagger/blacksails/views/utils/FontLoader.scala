@@ -22,7 +22,7 @@ object FontLoader {
     font
   }
 
-  def getGenerator() = {
+  def getGenerator = {
     new FreeTypeFontGenerator(Gdx.files.internal("data/font/TrebuchetMSRegular.ttf"))
   }
 }

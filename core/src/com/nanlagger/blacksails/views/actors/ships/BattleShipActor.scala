@@ -1,7 +1,7 @@
 package com.nanlagger.blacksails.views.actors.ships
 
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.nanlagger.blacksails.entities.game.ships.Ship
+import com.nanlagger.blacksails.entities.game.units.ships.Ship
 import com.nanlagger.blacksails.views.actors.UnitActor
 import com.nanlagger.blacksails.views.utils.TextureLoader
 

@@ -1,6 +1,6 @@
-package com.nanlagger.blacksails.entities.game.ships
+package com.nanlagger.blacksails.entities.game.units.ships
 
-import com.nanlagger.blacksails.utils.math.Position
+import com.nanlagger.blacksails.utils.math.CubePosition
 import com.nanlagger.blacksails.views.actors.GameActor
 import com.nanlagger.blacksails.views.actors.ships.{BattleShipActor, TestShipActor}
 
@@ -8,7 +8,7 @@ import com.nanlagger.blacksails.views.actors.ships.{BattleShipActor, TestShipAct
  * Created by NaNLagger on 25.05.15.
  * @author Stepan Lyashenko
  */
-class BattleShip(mIdPlayer: Int, mPosition: Position) extends Ship(mIdPlayer, mPosition) {
+class BattleShip(mIdPlayer: Int, mPosition: CubePosition) extends Ship(mIdPlayer, mPosition) {
   override val movementPoints: Int = 2
   override val attackRange: Int = 2
   override var healthPoint: Int = 34

@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Timer
 import com.badlogic.gdx.utils.Timer.Task
 import com.nanlagger.blacksails.controllers.GameController
 import com.nanlagger.blacksails.controllers.GameController.CtrlState
-import com.nanlagger.blacksails.entities.game.ships.Ship
+import com.nanlagger.blacksails.entities.game.units.ships.Ship
 import com.nanlagger.blacksails.views.actors.GameActor
 
 /**

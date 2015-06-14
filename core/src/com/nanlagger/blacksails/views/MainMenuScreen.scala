@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.{OrthographicCamera, GL20}
 import com.badlogic.gdx.scenes.scene2d._
 import com.badlogic.gdx.{Gdx, Screen}
 import com.nanlagger.blacksails.GameMain
-import com.nanlagger.blacksails.entities.FieldEntities
+import com.nanlagger.blacksails.entities.game.fields.FieldEntities
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.actors.hud.ButtonActor
 import com.nanlagger.blacksails.views.utils.TextureLoader
@@ -80,8 +80,8 @@ object MainMenuScreen extends Screen {
     miniMap.clear()
     val file: FileHandle = Gdx.files.internal(filename)
     val map: String = file.readString()
-    FieldEntities(map)
-    for(field <- FieldEntities.getAll()) {
+    FieldEntities(20)
+    for(field <- FieldEntities.getAll) {
       miniMap.addActor(field.actor)
       field.setVision(true)
     }
@@ -112,7 +112,7 @@ object MainMenuScreen extends Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
 
     stage.act(delta)
-    stage.draw
+    stage.draw()
   }
 
   override def resume(): Unit = {

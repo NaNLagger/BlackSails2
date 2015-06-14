@@ -2,7 +2,7 @@ package com.nanlagger.blacksails.views.actors.ships
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.{TextureRegion, Batch}
-import com.nanlagger.blacksails.entities.game.ships.{Ship, TestShip}
+import com.nanlagger.blacksails.entities.game.units.ships.{Ship, TestShip}
 import com.nanlagger.blacksails.views.actors.{UnitActor, GameActor}
 import com.nanlagger.blacksails.views.utils.TextureLoader
 

@@ -2,7 +2,8 @@ package com.nanlagger.blacksails.views.actors
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Actor
-import com.nanlagger.blacksails.entities.game.{Field, GameUnit}
+import com.nanlagger.blacksails.entities.game.fields.Field
+import com.nanlagger.blacksails.entities.game.units.GameUnit
 import com.nanlagger.blacksails.utils.Utils
 import com.nanlagger.blacksails.views.utils.FontLoader
 
